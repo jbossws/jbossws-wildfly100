@@ -27,7 +27,7 @@
   <parent>
     <groupId>org.jboss.ws</groupId>
     <artifactId>jbossws-wildfly1000-parent</artifactId>
-    <version>5.1.2-SNAPSHOT</version>
+    <version>5.1.4-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
@@ -132,20 +132,12 @@
         <artifactId>jboss-remoting</artifactId>
     </dependency>
     <dependency>
-        <groupId>org.hornetq</groupId>
-        <artifactId>hornetq-jms-client</artifactId>
+        <groupId>org.apache.activemq</groupId>
+        <artifactId>artemis-jms-client</artifactId>
     </dependency>
     <dependency>
-        <groupId>org.hornetq</groupId>
-        <artifactId>hornetq-jms-server</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.hornetq</groupId>
-        <artifactId>hornetq-core-client</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.hornetq</groupId>
-        <artifactId>hornetq-server</artifactId>
+        <groupId>org.apache.activemq</groupId>
+        <artifactId>artemis-commons</artifactId>
     </dependency>
     <dependency>
         <groupId>org.jboss.xnio</groupId>

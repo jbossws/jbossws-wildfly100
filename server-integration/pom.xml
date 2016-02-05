@@ -27,7 +27,7 @@
   <parent>
     <groupId>org.jboss.ws</groupId>
     <artifactId>jbossws-wildfly1000-parent</artifactId>
-    <version>5.1.2-SNAPSHOT</version>
+    <version>5.1.4-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
@@ -47,8 +47,8 @@
        <artifactId>jboss-msc</artifactId>
     </dependency>
     <dependency>
-       <groupId>org.wildfly</groupId>
-       <artifactId>wildfly-security-manager</artifactId>
+       <groupId>org.wildfly.security</groupId>
+       <artifactId>wildfly-elytron</artifactId>
     </dependency>
     <dependency>
        <groupId>org.wildfly.core</groupId>

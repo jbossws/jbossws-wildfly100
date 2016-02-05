@@ -224,6 +224,10 @@ public class ServerConfigImplTestCase {
         public StackConfig getStackConfig() {
             return new TestStackConfig();
         }
+
+        public void validatePathRewriteRule(String rule) {
+            //NOOP
+        }
     }
 
     public static class TestStackConfig implements StackConfig {
