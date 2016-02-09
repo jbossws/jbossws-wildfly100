@@ -67,7 +67,7 @@
     <remoting.version>4.0.17.Final</remoting.version>
     <remoting.jmx.version>2.0.1.Final</remoting.jmx.version>
     <jbossxb.version>2.0.3.GA</jbossxb.version>
-    <artemis.version>1.1.0</artemis.version>
+    <artemis.version>1.1.0.wildfly-011</artemis.version>
     <xnio.version>3.3.4.Final</xnio.version>
     <jboss.jaxws.api.version>2.0.2.Final</jboss.jaxws.api.version>
     <jboss.logging.tools.version>1.2.0.Final</jboss.logging.tools.version>
