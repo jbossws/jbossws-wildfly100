@@ -51,9 +51,9 @@
   </modules>
 
   <properties>
-    <jbossws.api.version>1.0.4.rest-SNAPSHOT</jbossws.api.version>
-    <jbossws.spi.version>3.1.1.rest-SNAPSHOT</jbossws.spi.version>
-    <jbossws.common.version>3.1.2-SNAPSHOT</jbossws.common.version>
+    <jbossws.api.version>1.1.0-SNAPSHOT</jbossws.api.version>
+    <jbossws.spi.version>4.0.0-SNAPSHOT</jbossws.spi.version>
+    <jbossws.common.version>4.0.0-SNAPSHOT</jbossws.common.version>
     <jboss.msc.version>1.2.6.Final</jboss.msc.version>
     <wildfly.version>10.0.0.Final</wildfly.version>
     <wildfly.core.version>2.0.5.Final</wildfly.core.version>
