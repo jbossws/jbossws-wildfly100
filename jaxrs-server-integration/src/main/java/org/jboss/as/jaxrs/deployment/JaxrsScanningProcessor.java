@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import javax.ws.rs.core.Application;
 
@@ -68,11 +69,11 @@ public class JaxrsScanningProcessor implements DeploymentUnitProcessor {
     private static final DotName DECORATOR = DotName.createSimple("javax.decorator.Decorator");
 
     public static final DotName APPLICATION = DotName.createSimple(Application.class.getName());
-
+    public static final String SERVLET_INIT_PARAM = "javax.ws.rs.Application";
     public static final String  JAXRS_SCAN = "jaxrs.scan";
     public static final String  JAXRS_SCAN_PROVIDERS = "jaxrs.scan.providers";
     public static final String  JAXRS_SCAN_RESOURCES = "jaxrs.scan.resources";
-
+    private static final Pattern pattern = Pattern.compile(",");
     @Override
     public void deploy(DeploymentPhaseContext phaseContext) throws DeploymentUnitProcessingException {
         final DeploymentUnit deploymentUnit = phaseContext.getDeploymentUnit();
@@ -152,6 +153,27 @@ public class JaxrsScanningProcessor implements DeploymentUnitProcessor {
             }
         }
 
+        if (hasBoot) {
+            for (ServletMetaData servlet : webdata.getServlets()) {
+                String servletClass = servlet.getServletClass();
+                if (BOOT_CLASSES.contains(servletClass)) {
+                    List<ParamValueMetaData> params = servlet.getInitParam();
+                    for (ParamValueMetaData param : params) {
+                        if (param.getParamName().equals(SERVLET_INIT_PARAM)) {
+                            String[] classNames = pattern.split(param.getParamValue());
+                            for (String className : classNames) {
+                                try {
+                                    jaxrsDeploymentData.getScannedApplicationClasses().add(
+                                            classLoader.loadClass(className));
+                                } catch (ClassNotFoundException e) {
+                                    throw JaxrsLogger.JAXRS_LOGGER.cannotLoadApplicationClass(e);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     protected void scan(final DeploymentUnit du, final ClassLoader classLoader, final JAXRSDeploymentMetadata jaxrsDeploymentData)
@@ -248,7 +270,7 @@ public class JaxrsScanningProcessor implements DeploymentUnitProcessor {
     }
     public static final Set<String> BOOT_CLASSES = new HashSet<String>();
     static {
-        Collections.addAll(BOOT_CLASSES, WSFServlet.class.getName());
+        Collections.addAll(BOOT_CLASSES, "org.jboss.wsf.stack.cxf.JAXRSServletExt");
     }
 
     protected boolean hasBootClasses(JBossWebMetaData webdata) throws DeploymentUnitProcessingException {
